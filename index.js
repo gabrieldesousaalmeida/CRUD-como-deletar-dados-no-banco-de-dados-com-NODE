@@ -23,6 +23,15 @@ app.get('/', (req, res)=>{
     
 })
 
+app.get('/del-usuario/:id', (req, res)=>{
+    usuario.destroy({
+        where: { 'id': req.params.id}
+    }).then(()=>{
+        res.redirect('/')
+    }).catch((err)=>{
+        console.log('erro no delete do registro'+ err)
+    })
+})
 app.get('/cad-usuario', (req, res)=>{
     res.render('cad_usuario')
 })
